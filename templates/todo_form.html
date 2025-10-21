@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add task</title>
+    <link rel="stylesheet" href="https://cdn.tailwind.css.com">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/942/942748.png" type="image/png">
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen p-6">
+    <a href="{% url 'todo_list' %}" class="fixed top-4 left-4 text-purple-500 hover:text-purple-300 text-2xl z-50" title="Back to Tasks">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+    </a>
 
+    <div class="max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold text-green-400 mb-6">Create / Update Task</h1>
+        <form method="post" class="bg-gray-800 border border-gray-700 rounded p-6 space-y-5">
+            {% csrf_token %}
+
+            <div>
+                <label for="id_title" class="block text-sm font-medium text-gray-300 mb-1">Title</label>
+                <input type="text" name="title" id="id_title" value="{{ form.title.value }}" class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+            </div>
+
+            <div>
+                <label for="id_description" class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+                <textarea name="description" id="id_description" rows="4" class="w-full px-4 py-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">{{ form.description.value }}</textarea>
+            </div>
+
+            <div class="flex items-center">
+                <input type="checkbox" name="completed" id="id_completed" {% if form.completed.value %}checked{% endif %} class="h-4 w-4 text-purple-600 bg-gray-700 border-gray-600 focus:ring-purple-500">
+                <label for="id_completed" class="ml-2 text-sm text-gray-300">Mark as completed</label>
+            </div>
+
+            <div class="flex space-x-3 pt-4">
+                <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">Save Task</button>
+                <a href="{% url 'todo_list' %}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded">Cancel</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
