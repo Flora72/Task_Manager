@@ -40,3 +40,19 @@ def delete_task(request, task_id):
     task = get_object_or_404(List, id=task_id)
     task.delete()
     return redirect('todo_list')
+
+
+#marking incomplete
+def mark_incomplete(request, task_id):
+    task = get_object_or_404(List, id=task_id)
+    task.completed = False
+    task.save()
+    return redirect('todo_list')
+
+# for marking complete
+def mark_complete(request, task_id):
+    task = get_object_or_404(List, id=task_id)
+    task.completed = True
+    task.save()
+    return redirect('todo_list')
+
