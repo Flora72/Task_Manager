@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Manager | Home </title>
-    <link rel="stylesheet" href="https://cdn.tailwind.css.com">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/942/942748.png" type="image/png">
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex items-center justify center">
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex items-center justify-center">
 <div class="text-center">
-    <h1>Welcome to Task Manager</h1>
-    <p>Check and uncheck your tasks. Stay Organized</p>
+    <h1 class="text-4xl font-bold text-purple-500 mb-4">Welcome to Task Manager</h1>
+    <p class="text-gray-300 mb-6">Check and uncheck your tasks. Stay Organized</p>
     <a href="{% url 'todo_list' %}" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded">Organize your tasks</a>
 </div>
 </body>

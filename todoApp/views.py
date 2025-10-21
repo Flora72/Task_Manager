@@ -8,7 +8,8 @@ def index(request):
     return render(request, 'index.html')
 
 def todo_list(request):
-    return render(request, 'todo_list.html')
+    tasks = List.objects.all().order_by('-created_at')
+    return render(request, 'todo_list.html',{'tasks':tasks})
 
 # creates the task
 
@@ -18,7 +19,7 @@ def create_task(request):
         if form.is_valid():
             form.save()
             return redirect('todo_list')
-        else:
+    else:
             form = ListForm()
     return render(request, 'todo_form.html', {'form': form})
 
@@ -31,7 +32,7 @@ def update_task(request, task_id):
         if form.is_valid():
             form.save()
             return redirect('todo_list')
-        else:
+    else:
             form = ListForm(instance=task)
     return render(request, 'todo_form.html', {'form': form})
 
